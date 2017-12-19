@@ -42,8 +42,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EngineFiles\EngineCore.cs" />
+    <Compile Include="EngineFiles\Collections\Graphic_Collection.cs" />
+    <Compile Include="EngineFiles\Engine_Core.cs" />
+    <Compile Include="EngineFiles\Engine_State_Manager.cs" />
     <Compile Include="EngineFiles\Engine_Updater.cs" />
+    <Compile Include="EngineFiles\GameStates\GameStateBase.cs" />
+    <Compile Include="EngineFiles\GameStates\SplashScreen.cs" />
     <Compile Include="RunGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

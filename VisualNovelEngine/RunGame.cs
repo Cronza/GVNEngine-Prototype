@@ -14,9 +14,13 @@ namespace VisualNovelEngine
         [STAThread]
         static void Main()
         {
-            using (var game = new EngineCore())
+            using (var game = new Engine_Core())
             {
+                //Begin Engine Execution / Run the Game
                 game.Run();
+
+                
+                
             }
         }
     }

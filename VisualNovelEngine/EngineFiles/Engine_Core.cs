@@ -1,8 +1,17 @@
-﻿using System;
+﻿/*
+Author: Garrett Fredley
+Purpose: The core engine script that manages and executes core engine functionality. The engine passes in information to this script to be executed such
+         as content to be drawn, while passing out information to the relevant classes such as input information to the input manager
+
+ */
+
+using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Xml;
+using VisualNovelEngine.EngineFiles.Collections;
 
 namespace VisualNovelEngine.EngineFiles
 
@@ -10,18 +19,18 @@ namespace VisualNovelEngine.EngineFiles
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class EngineCore : Game
+    public class Engine_Core : Game
     {
-        //Variables
-        Texture2D bucket;
-        Vector2 bucketPosition;
+        //Graphics Variables
         public GraphicsDeviceManager graphics;
+        public List<Sprite> drawStack;
         SpriteBatch spriteBatch;
 
         //Class References
-        Engine_Updater updater;
+        public Engine_Updater updater;
+        public Engine_State_Manager stateManager;
 
-        public EngineCore()
+        public Engine_Core()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -39,9 +48,15 @@ namespace VisualNovelEngine.EngineFiles
             updater = new Engine_Updater(this);
             updater.UpdateWindowSettings(true, null);
 
-            // TODO: Add your initialization logic here
-            bucketPosition = new Vector2(graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 2);
-            
+            //initialize the draw stack, allowing classes to pass content to be drawn to this list
+            drawStack = new List<Sprite>() { };
+
+            //Create the Engine State Manager
+            stateManager = new Engine_State_Manager(this);
+
+            //Start the Engine with the Splash Screen State
+            stateManager.UpdateGameState(Engine_State_Manager.GameState.Splash);
+
             base.Initialize();
         }
 
@@ -53,9 +68,7 @@ namespace VisualNovelEngine.EngineFiles
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-            bucket = Content.Load<Texture2D>("bucket");
+            
         }
 
         /// <summary>
@@ -78,11 +91,6 @@ namespace VisualNovelEngine.EngineFiles
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
-                Console.WriteLine("Pressed");
-
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -95,7 +103,17 @@ namespace VisualNovelEngine.EngineFiles
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            //spriteBatch.Begin();
+            spriteBatch.Begin();
+            foreach(Sprite item in drawStack) //drawStack isn't getting updated properly by the gamestates
+            {
+                
+                Console.WriteLine("Item Size: " + item.Size);
+                spriteBatch.Draw(item.Texture, item.Size, item.Color);
+                Console.WriteLine(item);
+                //Texture2D test = new Texture2D(graphics, 0,0);
+            }
+            
+            
             //spriteBatch.Draw(
             //    bucket, 
             //    bucketPosition, 
@@ -107,32 +125,12 @@ namespace VisualNovelEngine.EngineFiles
             //    SpriteEffects.None,
             //    0f
             //    );
-            //spriteBatch.End();
-
+            spriteBatch.End();
+            
             base.Draw(gameTime);
         }
-
-        ////Initialize the default settings of the engine window || Update the window settings
-        //protected void UpdateWinSettings(bool setDefault, string[] settings)
-        //{
-        //    //Get the Path to the engine properties file
-        //    string filePath = System.IO.Directory.GetCurrentDirectory();
-        //    filePath = filePath.Replace(@"bin\DesktopGL\AnyCPU\Debug", @"properties\") + "engine_properties.xml";
-
-        //    XmlReader reader;
-        //    reader = XmlReader.Create(filePath);
-
-        //    while(reader.Read())
-        //    {
-        //        if((reader.Name == "Resolution"))
-        //        {
-        //            //reader.ReadToFollowing
-        //            reader.ReadToFollowing("width");
-        //            Console.WriteLine(reader.ReadInnerXml());
-        //            reader.ReadToFollowing("height");
-        //            Console.WriteLine(reader.ReadInnerXml());
-        //        }
-        //    }
-        //}
     }
+
+
+    
 }

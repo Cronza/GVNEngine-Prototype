@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Author: Garrett Fredley
+Purpose: This script handles updates engine properties such as resolution, inputs, etc. This script is hooked to the EngineCore
+         as the graphics device is owned by the EngineCore
+ */
+
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,17 +13,16 @@ using System.Xml;
 
 namespace VisualNovelEngine.EngineFiles
 {
-    class Engine_Updater
+    public class Engine_Updater
     {
         //Initialize Property Variables
         public Dictionary<string, List<string>> settings;
-        public string[] resolution;
 
         //Class References
-        EngineCore engCore;
+        private Engine_Core engCore;
 
         //Initializer Function
-        public Engine_Updater(EngineCore core)
+        public Engine_Updater(Engine_Core core)
         {
             //Record the Reference to the Engine Core
             engCore = core;
@@ -52,7 +57,6 @@ namespace VisualNovelEngine.EngineFiles
                     {
                         //Retrieve the 'Width' and 'height' properties of the 'Resolution' Node, then record the found values
                         List<string> tempRes = new List<string>();
-                        Console.WriteLine(reader.Name);
                         reader.ReadToFollowing("width");
                         tempRes.Add(reader.ReadInnerXml());
                         reader.ReadToFollowing("height");
