@@ -40,7 +40,7 @@ namespace VisualNovelEngine.EngineFiles
         {
             //Get the Path to the engine properties file
             string filePath = System.IO.Directory.GetCurrentDirectory();
-            filePath = filePath.Replace(@"bin\DesktopGL\AnyCPU\Debug", @"properties\") + "engine_properties.xml";
+            filePath = filePath.Replace(@"bin\Windows\x86\Debug", @"properties\") + "engine_properties.xml";
 
             //Create the XML Reader
             XmlReader reader;

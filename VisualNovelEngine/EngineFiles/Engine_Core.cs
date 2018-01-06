@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Xml;
 using VisualNovelEngine.EngineFiles.Collections;
 
+
 namespace VisualNovelEngine.EngineFiles
 
 {
@@ -25,7 +26,7 @@ namespace VisualNovelEngine.EngineFiles
         public GraphicsDeviceManager graphics;
         public List<Sprite> drawStack;
         SpriteBatch spriteBatch;
-
+        
         //Class References
         public Engine_Updater updater;
         public Engine_State_Manager stateManager;
@@ -34,6 +35,7 @@ namespace VisualNovelEngine.EngineFiles
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
         }
 
         /// <summary>

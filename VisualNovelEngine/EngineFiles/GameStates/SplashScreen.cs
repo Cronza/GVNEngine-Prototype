@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VisualNovelEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace VisualNovelEngine.EngineFiles.GameStates
 {
@@ -13,7 +14,9 @@ namespace VisualNovelEngine.EngineFiles.GameStates
     {
         //Variables 
         private Engine_Core engCoreRef;
-
+        //Video video
+        
+        
         /// <summary>
         /// Initialization Method
         /// </summary>
@@ -37,11 +40,11 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         {
 
             //Add the Engine Logo to the draw stack
-            Console.WriteLine("Adding Item To Stack");
-            Console.WriteLine("Old Stack Size: " + engCoreRef.drawStack.Count());
             Sprite logo = new Sprite() {Texture = engCoreRef.Content.Load<Texture2D>("Engine_Art/GVNEngine_Logo_Light"), Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
             engCoreRef.drawStack.Add(logo);
-            Console.WriteLine("New Stack Size: " + engCoreRef.drawStack.Count());
+            
+            
+
 
         }
 
