@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Xml;
 using VisualNovelEngine.EngineFiles.Collections;
 
@@ -25,8 +26,11 @@ namespace VisualNovelEngine.EngineFiles
         //Graphics Variables
         public GraphicsDeviceManager graphics;
         public List<Sprite> drawStack;
+        public List<VideoRender> videoDrawStack;
         SpriteBatch spriteBatch;
-        
+        Video video;
+        VideoPlayer player;
+
         //Class References
         public Engine_Updater updater;
         public Engine_State_Manager stateManager;
@@ -52,6 +56,12 @@ namespace VisualNovelEngine.EngineFiles
 
             //initialize the draw stack, allowing classes to pass content to be drawn to this list
             drawStack = new List<Sprite>() { };
+
+            //initialize a special video draw stack allows video render updates
+            videoDrawStack = new List<VideoRender>() { };
+
+            //Initialize a video player to render videos
+            player = new VideoPlayer();
 
             //Create the Engine State Manager
             stateManager = new Engine_State_Manager(this);
@@ -103,36 +113,53 @@ namespace VisualNovelEngine.EngineFiles
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            
             spriteBatch.Begin();
-            foreach(Sprite item in drawStack) //drawStack isn't getting updated properly by the gamestates
+
+            //Draw each item in the sprite draw stack (TO-DO: Add multi-threading capability)
+            foreach(Sprite item in drawStack)
             {
-                
-                Console.WriteLine("Item Size: " + item.Size);
                 spriteBatch.Draw(item.Texture, item.Size, item.Color);
-                Console.WriteLine(item);
+                //Console.WriteLine(item);
                 //Texture2D test = new Texture2D(graphics, 0,0);
+            }
+            //Draw each item in the video draw stack (TO-DO: Research better performance maintainability)
+            foreach (VideoRender videoItem in videoDrawStack)
+            {
+                spriteBatch.Draw(videoItem.Render.Texture, videoItem.Render.Size, videoItem.Render.Color);
+                UpdateVideo(videoItem);
+                
             }
             
             
-            //spriteBatch.Draw(
-            //    bucket, 
-            //    bucketPosition, 
-            //    null,
-            //    Color.White,
-            //    0f,
-            //    new Vector2(bucket.Width / 2, bucket.Height / 2),
-            //    Vector2.One,
-            //    SpriteEffects.None,
-            //    0f
-            //    );
             spriteBatch.End();
             
             base.Draw(gameTime);
         }
+
+        //Begin rendering a video to the draw stack
+        public void PlayVideo(String videoToLoad, Sprite spriteObject)
+        {
+            //Load the passed in video and trigger it to play
+            video = Content.Load<Video>(videoToLoad);
+            
+            //Create a new video render object and have it begin playing
+            VideoRender videoRender = new VideoRender() { Render = spriteObject, Player = new VideoPlayer() };
+            videoRender.Player.Play(video);
+
+            //Add the video object to the draw stack
+            videoRender.Render.Texture = videoRender.Player.GetTexture();
+            videoDrawStack.Add(videoRender);
+
+            //TO-DO: Add delegate call when video stops to the object that called this
+            
+        }
+
+        //Retrieve the next video frame to render
+        protected void UpdateVideo(VideoRender itemToUpdate)
+        {
+            //Update item to have the next frame to be drawn
+            itemToUpdate.Render.Texture = itemToUpdate.Player.GetTexture();
+        }
     }
-
-
-    
 }

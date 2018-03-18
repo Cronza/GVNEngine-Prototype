@@ -14,9 +14,10 @@ namespace VisualNovelEngine.EngineFiles.GameStates
     {
         //Variables 
         private Engine_Core engCoreRef;
-        //Video video
-        
-        
+        //Video video;
+        //VideoPlayer player;
+
+
         /// <summary>
         /// Initialization Method
         /// </summary>
@@ -40,10 +41,23 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         {
 
             //Add the Engine Logo to the draw stack
-            Sprite logo = new Sprite() {Texture = engCoreRef.Content.Load<Texture2D>("Engine_Art/GVNEngine_Logo_Light"), Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
-            engCoreRef.drawStack.Add(logo);
-            
-            
+            //Sprite logo = new Sprite() {Texture = engCoreRef.Content.Load<Texture2D>("Engine_Art/GVNEngine_Logo_Light"), Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
+            //engCoreRef.drawStack.Add(logo);
+
+            //video = engCoreRef.Content.Load<Video>("Videos/GVNEngine_Splash_Screen");
+            //player = new VideoPlayer();
+
+            //Playing Video
+            //Console.WriteLine("Playing Splash Screen Video");
+            //player.Play(video);
+
+            Sprite videoTexture = new Sprite() { Texture = null, Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
+
+            //if (player.State != MediaState.Stopped)
+            //{ 
+            engCoreRef.PlayVideo("Videos/GVNEngine_Splash_Screen", videoTexture);
+
+            //}
 
 
         }
