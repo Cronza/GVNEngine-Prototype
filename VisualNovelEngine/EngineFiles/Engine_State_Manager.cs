@@ -16,9 +16,12 @@ namespace VisualNovelEngine.EngineFiles
     public class Engine_State_Manager
     {
         //Variables
-        IGameStateBase activeGameState;
+        public IGame_State_Base activeGameState;
         private Engine_Core engCoreRef;
 
+        /// <summary>
+        /// Store a passed-in reference to the engine core
+        /// </summary>
         public Engine_State_Manager(Engine_Core coreRef)
         {
             //Retain a reference to the engine core
@@ -38,22 +41,19 @@ namespace VisualNovelEngine.EngineFiles
 
         }
 
-        //Using a given state, update the engine to the new state (I.E switch to game view mode | front-end mode
+        //Using a given state, update the engine to the new state (I.E switch to game view mode | front-end mode)
         public void UpdateGameState(GameState newState)
         {
-            IGameStateBase state = null; 
-            switch(newState)
+            //Remove reference to old state
+            activeGameState = null;
+            
+            //Update state record to point to the new state object
+            switch (newState)
             {
                 case 0:
-                    state = new SplashScreen(engCoreRef);
+                    activeGameState = new SplashScreen(engCoreRef);
                     break;
-
             }
-
-            //Update state record to point to the new state object
-            IGameStateBase activeGameState = state;
-
-
         }
     }
 }

@@ -19,7 +19,7 @@ namespace VisualNovelEngine.EngineFiles
 
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// This is the main class for the game.
     /// </summary>
     public class Engine_Core : Game
     {
@@ -35,11 +35,17 @@ namespace VisualNovelEngine.EngineFiles
         public Engine_Updater updater;
         public Engine_State_Manager stateManager;
 
+        //Events
+        //public event coreEventHandler OnVideoStop;
+
+        //Main Function
         public Engine_Core()
         {
+            //Initialize the graphics manager
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            
+
+            //Point to the proper location for game content
+            Content.RootDirectory = "Content";           
         }
 
         /// <summary>
@@ -102,8 +108,10 @@ namespace VisualNovelEngine.EngineFiles
             //Console.WriteLine("test");
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            
             base.Update(gameTime);
+            stateManager.activeGameState.Update(gameTime);
+            
         }
 
         /// <summary>
@@ -129,6 +137,7 @@ namespace VisualNovelEngine.EngineFiles
                 spriteBatch.Draw(videoItem.Render.Texture, videoItem.Render.Size, videoItem.Render.Color);
                 UpdateVideo(videoItem);
                 
+             //   if()
             }
             
             
@@ -138,7 +147,7 @@ namespace VisualNovelEngine.EngineFiles
         }
 
         //Begin rendering a video to the draw stack
-        public void PlayVideo(String videoToLoad, Sprite spriteObject)
+        public VideoPlayer PlayVideo(String videoToLoad, Sprite spriteObject)
         {
             //Load the passed in video and trigger it to play
             video = Content.Load<Video>(videoToLoad);
@@ -151,9 +160,10 @@ namespace VisualNovelEngine.EngineFiles
             videoRender.Render.Texture = videoRender.Player.GetTexture();
             videoDrawStack.Add(videoRender);
 
-            //TO-DO: Add delegate call when video stops to the object that called this
-            
-        }
+
+            //Return the video player object
+            return videoRender.Player;
+            }
 
         //Retrieve the next video frame to render
         protected void UpdateVideo(VideoRender itemToUpdate)

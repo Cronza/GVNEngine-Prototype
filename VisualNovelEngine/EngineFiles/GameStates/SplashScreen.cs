@@ -10,12 +10,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace VisualNovelEngine.EngineFiles.GameStates
 {
-    class SplashScreen : IGameStateBase
+    class SplashScreen : IGame_State_Base
     {
         //Variables 
         private Engine_Core engCoreRef;
-        //Video video;
-        //VideoPlayer player;
+        private bool monitorVideo = false;
+        VideoPlayer player;
 
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         public SplashScreen(Engine_Core coreRef)
         {
             //Cast to the interface in order to call interface functions
-            IGameStateBase myInterface = this;
+            IGame_State_Base myInterface = this;
 
             //Retain a reference to the Engine_Core
             engCoreRef = coreRef;
@@ -37,35 +37,34 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// <summary>
         /// The main function for the state
         /// </summary>
-        void IGameStateBase.Main()
+        void IGame_State_Base.Main()
         {
-
-            //Add the Engine Logo to the draw stack
-            //Sprite logo = new Sprite() {Texture = engCoreRef.Content.Load<Texture2D>("Engine_Art/GVNEngine_Logo_Light"), Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
-            //engCoreRef.drawStack.Add(logo);
-
-            //video = engCoreRef.Content.Load<Video>("Videos/GVNEngine_Splash_Screen");
-            //player = new VideoPlayer();
-
-            //Playing Video
-            //Console.WriteLine("Playing Splash Screen Video");
-            //player.Play(video);
-
+            //Create the video texture sprite to be rendered
             Sprite videoTexture = new Sprite() { Texture = null, Size = new Rectangle(0, 0, 1366, 768), Pos = new Vector2(0, 0), Color = Color.White };
 
-            //if (player.State != MediaState.Stopped)
-            //{ 
-            engCoreRef.PlayVideo("Videos/GVNEngine_Splash_Screen", videoTexture);
+            //Play the splash screen video targetting the video texture sprite
+            player = engCoreRef.PlayVideo("Videos/GVNEngine_Splash_Screen", videoTexture);
 
-            //}
-
-
+            //Enable monitoring of the video player
+            monitorVideo = true;
         }
 
         /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        void IGame_State_Base.Update(GameTime gameTime)
+        {
+            if (player.State != MediaState.Stopped)
+            {
+                Console.WriteLine("PLAYER HAS STOPPED - LEAVING SPLASH SCREEN STATE");
+            }
+        }
+        /// <summary>
         /// Change the state by passing a state ID back to the state manager
         /// </summary>
-        void IGameStateBase.ChangeState()
+        void IGame_State_Base.ChangeState()
         {
 
         }
@@ -73,7 +72,7 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// <summary>
         /// End the State by destroy this class
         /// </summary>
-        void IGameStateBase.EndState()
+        void IGame_State_Base.EndState()
         {
 
         }
@@ -81,7 +80,7 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// <summary>
         /// Update the items to be drawn that were passed in by this class
         /// </summary>
-        void IGameStateBase.UpdateDrawCalls()
+        void IGame_State_Base.UpdateDrawCalls()
         {
 
         }

@@ -10,12 +10,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace VisualNovelEngine.EngineFiles.GameStates
 {
-    interface IGameStateBase
+    public interface IGame_State_Base
     {
         void Main();
+        void Update(GameTime gametime);
         void EndState();
         void ChangeState();
         void UpdateDrawCalls();
