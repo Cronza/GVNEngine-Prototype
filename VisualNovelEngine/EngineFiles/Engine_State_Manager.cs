@@ -33,26 +33,38 @@ namespace VisualNovelEngine.EngineFiles
         /// </summary>
         public enum GameState
         {
-            Splash = 0,
-            FrontEnd = 1,
-            Loading = 2,
-            Game = 3,
-            Credits = 4,
+            Splash,
+            FrontEnd,
+            Loading,
+            Game,
+            Credits,
 
         }
 
         //Using a given state, update the engine to the new state (I.E switch to game view mode | front-end mode)
         public void UpdateGameState(GameState newState)
         {
-            //Remove reference to old state
+            //Destroy the previous state by clearing its reference (Garbage collector will pick it up)
             activeGameState = null;
             
             //Update state record to point to the new state object
             switch (newState)
             {
-                case 0:
-                    activeGameState = new SplashScreen(engCoreRef);
+                case GameState.Splash:
+                { 
+                    activeGameState = new Splash_Screen(engCoreRef);
                     break;
+                }
+                case GameState.FrontEnd:
+                { 
+                    activeGameState = new Front_End(engCoreRef);
+                    break;
+                }
+                case GameState.Game:
+                {
+                    activeGameState = new Dialogue(engCoreRef);
+                    break;
+                }
             }
         }
     }

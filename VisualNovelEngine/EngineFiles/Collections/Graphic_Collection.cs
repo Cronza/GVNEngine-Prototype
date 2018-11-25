@@ -15,8 +15,19 @@ namespace VisualNovelEngine.EngineFiles.Collections
     public class Sprite
     {
         public Texture2D Texture { get; set; }
-        public Rectangle Size { get; set; }
+        public Rectangle Size { get; set; }        
+        public Color Color { get; set; }
+    }
+
+    /// <summary>
+    /// Custom Container mimicking the structure needed for Text Sprites
+    /// </summary>
+    public class TextSprite
+    {
+        public SpriteFont Font { get; set; }
         public Vector2 Pos { get; set; }
+        public Vector2 Origin { get; set; }
+        public string Text { get; set; }
         public Color Color { get; set; }
     }
 

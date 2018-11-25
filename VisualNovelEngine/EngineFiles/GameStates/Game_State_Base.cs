@@ -18,8 +18,8 @@ namespace VisualNovelEngine.EngineFiles.GameStates
     {
         void Main();
         void Update(GameTime gametime);
-        void EndState();
-        void ChangeState();
+        void ChangeState(Engine_State_Manager.GameState newState);
         void UpdateDrawCalls();
+        void CleanUp();
     }
 }

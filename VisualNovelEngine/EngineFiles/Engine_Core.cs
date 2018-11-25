@@ -25,11 +25,12 @@ namespace VisualNovelEngine.EngineFiles
     {
         //Graphics Variables
         public GraphicsDeviceManager graphics;
-        public List<Sprite> drawStack;
-        public List<VideoRender> videoDrawStack;
-        SpriteBatch spriteBatch;
-        Video video;
-        VideoPlayer player;
+        public Dictionary<string, Sprite> drawStack;
+        public Dictionary<string, TextSprite> textDrawStack;
+        public Dictionary<string, VideoRender> videoDrawStack;
+        private SpriteBatch spriteBatch;
+        private Video video;
+        private VideoPlayer player;
 
         //Class References
         public Engine_Updater updater;
@@ -60,11 +61,14 @@ namespace VisualNovelEngine.EngineFiles
             updater = new Engine_Updater(this);
             updater.UpdateWindowSettings(true, null);
 
-            //initialize the draw stack, allowing classes to pass content to be drawn to this list
-            drawStack = new List<Sprite>() { };
+            //initialize the draw stack, allowing classes to pass sprites to be drawn to this list
+            drawStack = new Dictionary<string, Sprite>();
+
+            //initialize the text draw stack, allowing text to be drawn
+            textDrawStack = new Dictionary<string, TextSprite>();
 
             //initialize a special video draw stack allows video render updates
-            videoDrawStack = new List<VideoRender>() { };
+            videoDrawStack = new Dictionary<string, VideoRender>();
 
             //Initialize a video player to render videos
             player = new VideoPlayer();
@@ -105,7 +109,6 @@ namespace VisualNovelEngine.EngineFiles
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //Console.WriteLine("test");
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             
@@ -120,24 +123,29 @@ namespace VisualNovelEngine.EngineFiles
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //Clear the graphics
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
+            //Begin the batch for filling
             spriteBatch.Begin();
 
             //Draw each item in the sprite draw stack (TO-DO: Add multi-threading capability)
-            foreach(Sprite item in drawStack)
+            foreach(KeyValuePair<string, Sprite> item in drawStack)
             {
-                spriteBatch.Draw(item.Texture, item.Size, item.Color);
-                //Console.WriteLine(item);
-                //Texture2D test = new Texture2D(graphics, 0,0);
+                spriteBatch.Draw(item.Value.Texture, item.Value.Size, item.Value.Color);
+                
+            }
+            //Draw each item in the text draw stack (TO-DO: Add multi-threading capability)
+            foreach (KeyValuePair<string, TextSprite> item in textDrawStack)
+            {
+                spriteBatch.DrawString(item.Value.Font, item.Value.Text, item.Value.Pos, item.Value.Color, 0.0f, item.Value.Origin, 1.0f, SpriteEffects.None, 0.0f);
             }
             //Draw each item in the video draw stack (TO-DO: Research better performance maintainability)
-            foreach (VideoRender videoItem in videoDrawStack)
+            foreach (KeyValuePair<string, VideoRender> videoItem in videoDrawStack)
             {
-                spriteBatch.Draw(videoItem.Render.Texture, videoItem.Render.Size, videoItem.Render.Color);
-                UpdateVideo(videoItem);
-                
-             //   if()
+                spriteBatch.Draw(videoItem.Value.Render.Texture, videoItem.Value.Render.Size, videoItem.Value.Render.Color);
+                UpdateVideo(videoItem.Value);
+                             
             }
             
             
@@ -147,25 +155,48 @@ namespace VisualNovelEngine.EngineFiles
         }
 
         //Begin rendering a video to the draw stack
-        public VideoPlayer PlayVideo(String videoToLoad, Sprite spriteObject)
+        public VideoPlayer PlayVideo(string videoToLoad, string key, Sprite spriteObject)
         {
             //Load the passed in video and trigger it to play
             video = Content.Load<Video>(videoToLoad);
             
             //Create a new video render object and have it begin playing
-            VideoRender videoRender = new VideoRender() { Render = spriteObject, Player = new VideoPlayer() };
+            VideoRender videoRender = new VideoRender() { Render = spriteObject, Player = player };
             videoRender.Player.Play(video);
 
             //Add the video object to the draw stack
             videoRender.Render.Texture = videoRender.Player.GetTexture();
-            videoDrawStack.Add(videoRender);
-
+            videoDrawStack.Add(key, videoRender);
 
             //Return the video player object
             return videoRender.Player;
-            }
 
-        //Retrieve the next video frame to render
+        }
+        /// <summary>
+        /// Taking in whether the designated item is a video or sprite, it removes the item from the draw list via its key name
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="drawType"></param>
+        public void RemoveDrawItem(string key, string drawType)
+        {
+            switch(drawType.ToLower())
+            {
+                case "video":
+                    videoDrawStack.Remove(key);
+                    break;
+                case "sprite":
+                    drawStack.Remove(key);
+                    break;
+                case "text":
+                    textDrawStack.Remove(key);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve the next video frame to render
+        /// </summary>
+        /// <param name="itemToUpdate"></param>
         protected void UpdateVideo(VideoRender itemToUpdate)
         {
             //Update item to have the next frame to be drawn
