@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VisualNovelEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input;
 using VisualNovelEngine.EngineFiles.UI.InGame;
 using VisualNovelEngine.EngineFiles.Utilities;
 
@@ -17,6 +12,11 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         //Variables 
         private Engine_Core engCoreRef;
         IGame_State_Base myInterface;
+
+        //UNORGANIZED
+        private int lineIndex = 0;
+        StoryChapter currentChapter;
+        bool keyPre;
 
         //U.I Variables
         private Dialogue_UI dialogueBox;
@@ -44,8 +44,9 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         {
             //Create the Dialogue Box
             dialogueBox = new Dialogue_UI(engCoreRef);
-            //dialogueBox.AddCharacter("Jessica");
             StoryReader reader = new StoryReader();
+            currentChapter = reader.GenerateStoryChapter("TestStory.json");
+            engCoreRef.textDrawStack["Dialogue_Text"].Text = currentChapter.ChapterText[lineIndex];
         }
 
         /// <summary>
@@ -55,7 +56,17 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         void IGame_State_Base.Update(GameTime gameTime)
         {
+            //Get the key position and input state
+            bool keyCur = Keyboard.GetState().IsKeyDown(Keys.Space);
+
+            if (keyCur == false && keyPre == true)
+            { 
+                lineIndex += 1;
+                engCoreRef.textDrawStack["Dialogue_Text"].Text = currentChapter.ChapterText[lineIndex];
+            }
             
+            //Update our previous state record so we can check again next frame
+            keyPre = keyCur;
         }
         /// <summary>
         /// Change the state by passing a state ID back to the state manager

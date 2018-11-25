@@ -17,7 +17,6 @@ namespace VisualNovelEngine.EngineFiles.UI.InGame
         private Sprite nameBoxArt;
         private TextSprite dialogueText;
         private TextSprite nameText;
-        private List<string> speakerNames = new List<string>();
         private string dialogue;
 
         //Main Initialization Method
@@ -40,43 +39,39 @@ namespace VisualNovelEngine.EngineFiles.UI.InGame
                 Size = new Rectangle(0, dialogueBoxArt.Size.Location.Y - (dialogueBoxArt.Size.Size.Y / 4), dialogueBoxArt.Size.Size.X / 6, dialogueBoxArt.Size.Size.Y / 4)
             };
 
-            
-            //myText.Pos = new Vector2((myArt.Size.X + myArt.Size.Width / 2), (myArt.Size.Y + myArt.Size.Height / 2));
-            //myText.Origin = myText.Font.MeasureString(myText.Text) / 2;
+            //Create the dialogue text
+            nameText = new TextSprite()
+            {
+                Font = engCoreRef.Content.Load<SpriteFont>("UI/Fonts/Menu_Button_01"),
+                Text = "",
+                Color = Color.White,
+                Pos = new Vector2((nameBoxArt.Size.X + nameBoxArt.Size.Width / 2), (nameBoxArt.Size.Y + nameBoxArt.Size.Height / 2))
+            };
+            nameText.Origin = nameText.Font.MeasureString(nameText.Text) / 2;
+            engCoreRef.textDrawStack.Add("Character_Text", nameText);
 
+            dialogueText = new TextSprite()
+            {
+                Font = engCoreRef.Content.Load<SpriteFont>("UI/Fonts/Menu_Button_01"),
+                Text = "",
+                Color = Color.White,
+                Pos = new Vector2(dialogueBoxArt.Size.X + 20, dialogueBoxArt.Size.Y + 10)
+            };
+            engCoreRef.textDrawStack.Add("Dialogue_Text", dialogueText);
+
+            //Render the dialogue U.I
             engCoreRef.drawStack.Add("Dialogue_Box", dialogueBoxArt);
             engCoreRef.drawStack.Add("Name_Box", nameBoxArt);
         }
+        /*
         /// <summary>
         /// Add character to the dialogue display
         /// </summary>
         public void AddCharacter(string name)
         {
-            ///////////////////// Name
-            speakerNames.Add(name);
-            nameText = new TextSprite()
-            {
-                Font = engCoreRef.Content.Load<SpriteFont>("UI/Fonts/Menu_Button_01"),
-                Text = name,
-                Color = Color.White,
-                Pos = new Vector2((nameBoxArt.Size.X + nameBoxArt.Size.Width / 2), (nameBoxArt.Size.Y + nameBoxArt.Size.Height / 2))
-            };
-            nameText.Origin = nameText.Font.MeasureString(nameText.Text) / 2;
-            engCoreRef.textDrawStack.Add("Character_01", nameText);
-
-            //////////////////// Dialogue dialogueText
-
-            dialogueText = new TextSprite()
-            {
-                Font = engCoreRef.Content.Load<SpriteFont>("UI/Fonts/Menu_Button_01"),
-                Text = "Hello, it is a pleasure to meet you",
-                Color = Color.White,
-                Pos = new Vector2(dialogueBoxArt.Size.X + 20, dialogueBoxArt.Size.Y + 10)
-            };
-            //dialogueText.Origin = dialogueText.Font.MeasureString(dialogueText.Text) / 2;
-            engCoreRef.textDrawStack.Add("Character_01_Dialogue", dialogueText);
+            
         }
-
+        */
 
     }
 }
