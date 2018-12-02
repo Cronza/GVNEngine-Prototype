@@ -8,6 +8,6 @@ namespace VisualNovelEngine.EngineFiles.Collections
     public class StoryChapter
     {
         public string ChapterName { get; set; }
-        public List<string> ChapterText { get; set; }
+        public List<List<string>> ChapterText { get; set; }
     }
 }

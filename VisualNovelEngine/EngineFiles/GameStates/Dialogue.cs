@@ -44,9 +44,14 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         {
             //Create the Dialogue Box
             dialogueBox = new Dialogue_UI(engCoreRef);
+
+            //Load the story json file and store it
             StoryReader reader = new StoryReader();
             currentChapter = reader.GenerateStoryChapter("TestStory.json");
-            engCoreRef.textDrawStack["Dialogue_Text"].Text = currentChapter.ChapterText[lineIndex];
+
+            //Set the initial display using the first line of the story
+            dialogueBox.UpdateText(currentChapter.ChapterText[lineIndex]);
+            dialogueBox.UpdateCharacterArt(currentChapter.ChapterText[lineIndex][2]);
         }
 
         /// <summary>
@@ -56,18 +61,27 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         void IGame_State_Base.Update(GameTime gameTime)
         {
-            //Get the key position and input state
+            //Get the current key position and input state
             bool keyCur = Keyboard.GetState().IsKeyDown(Keys.Space);
 
+            //If the key was released this frame but held last frame, then its safe to assume the user clicked
             if (keyCur == false && keyPre == true)
             { 
                 lineIndex += 1;
-                engCoreRef.textDrawStack["Dialogue_Text"].Text = currentChapter.ChapterText[lineIndex];
+                if(lineIndex < currentChapter.ChapterText.Count)
+                { 
+                    dialogueBox.UpdateText(currentChapter.ChapterText[lineIndex]);
+
+                    //If a character art path was provided in the story file, update the character art
+                    if (currentChapter.ChapterText[lineIndex][2] != "")
+                        dialogueBox.UpdateCharacterArt(currentChapter.ChapterText[lineIndex][2]);
+                }
             }
             
             //Update our previous state record so we can check again next frame
             keyPre = keyCur;
         }
+        
         /// <summary>
         /// Change the state by passing a state ID back to the state manager
         /// </summary>

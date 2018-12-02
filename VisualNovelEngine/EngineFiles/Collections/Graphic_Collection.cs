@@ -15,8 +15,10 @@ namespace VisualNovelEngine.EngineFiles.Collections
     public class Sprite
     {
         public Texture2D Texture { get; set; }
-        public Rectangle Size { get; set; }        
+        public Rectangle Size { get; set; }
+        public Vector2 Origin { get; set; }
         public Color Color { get; set; }
+        public float RenderLayer { get; set; } = 0.5f;
     }
 
     /// <summary>

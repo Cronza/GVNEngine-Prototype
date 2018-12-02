@@ -86,8 +86,14 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// </summary>
         void IGame_State_Base.CleanUp()
         {
+            //Clear the video from the draw stack
             engCoreRef.RemoveDrawItem("Splash_Video", "video");
+
+            //Stop the video player from running
             player.Stop();
+
+            //Unload all loaded content
+            engCoreRef.Content.Unload();
         }
     }
 }

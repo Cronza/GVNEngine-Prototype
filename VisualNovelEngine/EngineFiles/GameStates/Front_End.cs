@@ -91,6 +91,9 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         {
             //Destroy any objects created by the front end
             frontEndUI.CleanUp();
+
+            //Unload all assets that have been loaded through the content pipeline
+            engCoreRef.Content.Unload();
         }
     }
 

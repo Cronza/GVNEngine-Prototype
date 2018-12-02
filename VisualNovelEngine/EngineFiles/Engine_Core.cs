@@ -47,6 +47,7 @@ namespace VisualNovelEngine.EngineFiles
 
             //Point to the proper location for game content
             Content.RootDirectory = "Content";           
+            
         }
 
         /// <summary>
@@ -127,25 +128,23 @@ namespace VisualNovelEngine.EngineFiles
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             //Begin the batch for filling
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            
             //Draw each item in the sprite draw stack (TO-DO: Add multi-threading capability)
             foreach(KeyValuePair<string, Sprite> item in drawStack)
             {
-                spriteBatch.Draw(item.Value.Texture, item.Value.Size, item.Value.Color);
-                
+                spriteBatch.Draw(item.Value.Texture, item.Value.Size, null, item.Value.Color, 0.0f, new Vector2(0,0), SpriteEffects.None, item.Value.RenderLayer);
             }
             //Draw each item in the text draw stack (TO-DO: Add multi-threading capability)
             foreach (KeyValuePair<string, TextSprite> item in textDrawStack)
             {
-                spriteBatch.DrawString(item.Value.Font, item.Value.Text, item.Value.Pos, item.Value.Color, 0.0f, item.Value.Origin, 1.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.DrawString(item.Value.Font, item.Value.Text, item.Value.Pos, item.Value.Color, 0.0f, item.Value.Origin, 1.0f, SpriteEffects.None, 1.0f);
             }
             //Draw each item in the video draw stack (TO-DO: Research better performance maintainability)
             foreach (KeyValuePair<string, VideoRender> videoItem in videoDrawStack)
             {
                 spriteBatch.Draw(videoItem.Value.Render.Texture, videoItem.Value.Render.Size, videoItem.Value.Render.Color);
                 UpdateVideo(videoItem.Value);
-                             
             }
             
             

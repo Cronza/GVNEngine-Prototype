@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -85,6 +86,7 @@
     <Content Include="Content\Characters\01_Trias_Mirion\Trias_Mirion_Sheet.png" />
     <Content Include="Content\Engine_Art\GVNEngine_Logo_Dark.png" />
     <Content Include="Content\Engine_Art\GVNEngine_Logo_Light.png" />
+    <Content Include="Content\Properties\engine_properties.xml" />
     <Content Include="Content\UI\Front_End\Test_Button.png" />
     <Content Include="Content\UI\Front_End\Test_Button_02.png" />
     <Content Include="Content\Videos\GVNEngine_Splash_Screen.mp4" />
@@ -98,9 +100,7 @@
     <None Include="app.manifest" />
     <None Include="Content\UI\Fonts\Menu_Button_01.spritefont" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
