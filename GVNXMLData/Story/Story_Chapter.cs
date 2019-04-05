@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-
-namespace VisualNovelEngine.EngineFiles.Collections
+namespace GVNXMLData
 {
     /// <summary>
-    /// The data object for deserialized JSON story data
+    /// The data object for deserialized story data
     /// </summary>
     public class StoryChapter
     {

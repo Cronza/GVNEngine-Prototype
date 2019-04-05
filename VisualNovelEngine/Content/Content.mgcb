@@ -10,8 +10,45 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\GVNXMLData\bin\Release\netstandard1.4\GVNXMLData.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin Backgrounds/Classroom_01.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Backgrounds/Classroom_01.jpg
+
+#begin Characters/01_Trias_Mirion/Trias_Mirion_Concerned.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/01_Trias_Mirion/Trias_Mirion_Concerned.png
+
+#begin Characters/01_Trias_Mirion/Trias_Mirion_Normal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/01_Trias_Mirion/Trias_Mirion_Normal.png
 
 #begin Characters/01_Trias_Mirion/Trias_Mirion_Sheet.png
 /importer:TextureImporter
@@ -49,10 +86,23 @@
 /processorParam:TextureFormat=Color
 /build:Engine_Art/GVNEngine_Logo_Light.png
 
-#begin Videos/GVNEngine_Splash_Screen.mp4
-/importer:H264Importer
-/processor:VideoProcessor
-/build:Videos/GVNEngine_Splash_Screen.mp4
+#begin Music/Front_End_Test.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Front_End_Test.mp3
+
+#begin Story_Data/Example_Story_Data.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Story_Data/Example_Story_Data.xml
+
+#begin UI/Fonts/Menu_Button_01.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:UI/Fonts/Menu_Button_01.spritefont
 
 #begin UI/Front_End/Test_Button.png
 /importer:TextureImporter
@@ -78,46 +128,8 @@
 /processorParam:TextureFormat=Color
 /build:UI/Front_End/Test_Button_02.png
 
-#begin UI/Fonts/Menu_Button_01.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:UI/Fonts/Menu_Button_01.spritefont
-
-#begin Characters/01_Trias_Mirion/Trias_Mirion_Concerned.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Characters/01_Trias_Mirion/Trias_Mirion_Concerned.png
-
-#begin Characters/01_Trias_Mirion/Trias_Mirion_Normal.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Characters/01_Trias_Mirion/Trias_Mirion_Normal.png
-
-#begin Backgrounds/Classroom_01.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Backgrounds/Classroom_01.jpg
+#begin Videos/GVNEngine_Splash_Screen.mp4
+/importer:H264Importer
+/processor:VideoProcessor
+/build:Videos/GVNEngine_Splash_Screen.mp4
 

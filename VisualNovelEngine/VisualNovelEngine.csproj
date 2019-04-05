@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,7 @@
     <AssemblyName>VisualNovelEngine</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -57,7 +58,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EngineFiles\Collections\Story_Collection.cs" />
     <Compile Include="EngineFiles\Collections\Graphic_Collection.cs" />
     <Compile Include="EngineFiles\Engine_Core.cs" />
     <Compile Include="EngineFiles\Engine_State_Manager.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="EngineFiles\GameStates\Splash_Screen.cs" />
     <Compile Include="EngineFiles\UI\InGame\Base_Button.cs" />
     <Compile Include="EngineFiles\UI\InGame\Dialogue_UI.cs" />
-    <Compile Include="EngineFiles\Utilities\StoryReader.cs" />
+    <Compile Include="EngineFiles\Utilities\Story_Reader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunGame.cs" />
   </ItemGroup>
@@ -87,12 +87,17 @@
     <Content Include="Content\Engine_Art\GVNEngine_Logo_Dark.png" />
     <Content Include="Content\Engine_Art\GVNEngine_Logo_Light.png" />
     <Content Include="Content\Properties\engine_properties.xml" />
+    <None Include="app.config" />
+    <None Include="Content\Story_Data\Example_Story_Data.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Content\UI\Front_End\Test_Button.png" />
     <Content Include="Content\UI\Front_End\Test_Button_02.png" />
     <Content Include="Content\Videos\GVNEngine_Splash_Screen.mp4" />
     <Content Include="Icon.ico" />
-    <Content Include="Properties\engine_properties.xml" />
-    <None Include="Content\Story_Data\TestStory.json" />
+    <Content Include="Properties\engine_properties.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,7 +105,12 @@
     <None Include="app.manifest" />
     <None Include="Content\UI\Fonts\Menu_Button_01.spritefont" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GVNXMLData\GVNXMLData.csproj">
+      <Project>{1d4a186f-6e40-44e5-9025-349aac43b2b9}</Project>
+      <Name>GVNXMLData</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>

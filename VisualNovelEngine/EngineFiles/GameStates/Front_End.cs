@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using VisualNovelEngine.EngineFiles.UI.InGame;
 using VisualNovelEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace VisualNovelEngine.EngineFiles.GameStates
 {
@@ -20,6 +16,9 @@ namespace VisualNovelEngine.EngineFiles.GameStates
 
         //U.I Variables
         private Front_End_UI frontEndUI;
+
+        //Audio Variables
+        public Song song;
 
         /// <summary>
         /// Initialization Method
@@ -46,10 +45,12 @@ namespace VisualNovelEngine.EngineFiles.GameStates
         /// </summary>
         void IGame_State_Base.Main()
         {
-            Console.WriteLine("Running Front End code");
-
             //Reveal mouse cursor
             engCoreRef.IsMouseVisible = true;
+
+            //------------------------AUDIO TEST----------------------------
+            song = engCoreRef.Content.Load<Song>("Music/Front_End_Test");
+            MediaPlayer.Play(song);
 
         }
 
@@ -103,7 +104,7 @@ namespace VisualNovelEngine.EngineFiles.GameStates
     class Front_End_UI
     {
         //Variables
-        //private Front_End state;
+        private Front_End state;
         private Engine_Core engCoreRef;
         private IGame_State_Base stateFunctions;
 
@@ -117,9 +118,10 @@ namespace VisualNovelEngine.EngineFiles.GameStates
             //Store references
             stateFunctions = stateInterface;
             engCoreRef = coreRef;
+            state = curState;
 
-            //---------------GENERATE BUTTONS------------
-            
+            //---------------GENERATE BUTTONS---------------
+
             //Create the Start Game Button
             Base_Button.ClickEvent clickEvent = GoToGame;
             startGameButton = new Base_Button(
@@ -196,6 +198,8 @@ namespace VisualNovelEngine.EngineFiles.GameStates
             engCoreRef.RemoveDrawItem("Exit_Game_Button", "sprite");
             engCoreRef.RemoveDrawItem("Start_Game_Button_Text", "text");
             engCoreRef.RemoveDrawItem("Exit_Game_Button_Text", "text");
+            MediaPlayer.Stop();
+            state.song = null;
         }
     }
 }

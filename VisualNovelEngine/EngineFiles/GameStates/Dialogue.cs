@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using VisualNovelEngine.EngineFiles.UI.InGame;
 using VisualNovelEngine.EngineFiles.Utilities;
+using GVNXMLData;
+
 
 namespace VisualNovelEngine.EngineFiles.GameStates
 {
@@ -15,7 +17,7 @@ namespace VisualNovelEngine.EngineFiles.GameStates
 
         //UNORGANIZED
         private int lineIndex = 0;
-        StoryChapter currentChapter;
+        StoryChapter storyData;
         bool keyPre;
 
         //U.I Variables
@@ -45,13 +47,12 @@ namespace VisualNovelEngine.EngineFiles.GameStates
             //Create the Dialogue Box
             dialogueBox = new Dialogue_UI(engCoreRef);
 
-            //Load the story json file and store it
-            StoryReader reader = new StoryReader();
-            currentChapter = reader.GenerateStoryChapter("TestStory.json");
+            //Load the story file and store it
+            storyData = engCoreRef.Content.Load<StoryChapter>("Story_Data/Example_Story_Data");
 
             //Set the initial display using the first line of the story
-            dialogueBox.UpdateText(currentChapter.ChapterText[lineIndex]);
-            dialogueBox.UpdateCharacterArt(currentChapter.ChapterText[lineIndex][2]);
+            dialogueBox.UpdateText(storyData.ChapterText[lineIndex]);
+            dialogueBox.UpdateCharacterArt(storyData.ChapterText[lineIndex][2]);
         }
 
         /// <summary>
@@ -68,14 +69,15 @@ namespace VisualNovelEngine.EngineFiles.GameStates
             if (keyCur == false && keyPre == true)
             { 
                 lineIndex += 1;
-                if(lineIndex < currentChapter.ChapterText.Count)
+                if(lineIndex < storyData.ChapterText.Count)
                 { 
-                    dialogueBox.UpdateText(currentChapter.ChapterText[lineIndex]);
+                    dialogueBox.UpdateText(storyData.ChapterText[lineIndex]);
 
                     //If a character art path was provided in the story file, update the character art
-                    if (currentChapter.ChapterText[lineIndex][2] != "")
-                        dialogueBox.UpdateCharacterArt(currentChapter.ChapterText[lineIndex][2]);
+                    if (storyData.ChapterText[lineIndex][2] != "")
+                        dialogueBox.UpdateCharacterArt(storyData.ChapterText[lineIndex][2]);
                 }
+                
             }
             
             //Update our previous state record so we can check again next frame

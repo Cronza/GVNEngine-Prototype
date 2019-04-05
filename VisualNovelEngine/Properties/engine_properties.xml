@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Settings>
-	<Resolution>
-		<width>1366</width>
-		<height>768</height>
-	</Resolution>
-	<EnableUserResizing>true</EnableUserResizing>
-</Settings>
+<XnaContent>
+  <Settings>
+    <Resolution>
+      <width>1366</width>
+      <height>768</height>
+    </Resolution>
+    <EnableUserResizing>true</EnableUserResizing>
+  </Settings>
+</XnaContent>
