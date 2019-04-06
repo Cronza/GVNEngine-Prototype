@@ -38,7 +38,6 @@ namespace VisualNovelEngine.EngineFiles
             Loading,
             Game,
             Credits,
-
         }
 
         //Using a given state, update the engine to the new state (I.E switch to game view mode | front-end mode)

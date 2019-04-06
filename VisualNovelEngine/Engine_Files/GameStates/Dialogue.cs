@@ -3,7 +3,6 @@ using VisualNovelEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using VisualNovelEngine.EngineFiles.UI.InGame;
-using VisualNovelEngine.EngineFiles.Utilities;
 using GVNXMLData;
 
 

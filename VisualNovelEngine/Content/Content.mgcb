@@ -10,9 +10,14 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\GVNXMLData\bin\Release\netstandard1.4\GVNXMLData.dll
+/reference:..\..\GVNXMLData\bin\Release\netstandard1.1\GVNXMLData.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin ../Engine_Files/Properties/Engine_Properties.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:../Engine_Files/Properties/Engine_Properties.xml;Engine_Properties.xml
 
 #begin Backgrounds/Classroom_01.jpg
 /importer:TextureImporter

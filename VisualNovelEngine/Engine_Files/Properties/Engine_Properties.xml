@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent>
+  <Asset Type="GVNXMLData.EngineProperties">
+    <Resolution>
+      1366
+      768
+    </Resolution>
+    <EnableUserResizing>true</EnableUserResizing>
+  </Asset>
+</XnaContent>
