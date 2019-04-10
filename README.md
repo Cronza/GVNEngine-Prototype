@@ -16,4 +16,3 @@ The GVNEngine is a Visual Novel Creation Kit using the MonoGame framework. It's 
   - Provides a GUI for creating and editing XML story data that is read by the engine. Allows user to define audio, effects, sprites, and dialogue
 - Engine Configurator
   - A GUI to configure the output of the game
--
