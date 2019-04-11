@@ -1,12 +1,12 @@
 ﻿using System;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using VisualNovelEngine.EngineFiles.UI.InGame;
+using GVNEngine.EngineFiles.UI.InGame;
 using GVNXMLData;
 
 
-namespace VisualNovelEngine.EngineFiles.GameStates
+namespace GVNEngine.EngineFiles.GameStates
 {
     class Dialogue : IGame_State_Base
     {

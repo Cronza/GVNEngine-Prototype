@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.Collections;
 
-namespace VisualNovelEngine.EngineFiles.UI.InGame
+namespace GVNEngine.EngineFiles.UI.InGame
 {
     class Base_Button
     {

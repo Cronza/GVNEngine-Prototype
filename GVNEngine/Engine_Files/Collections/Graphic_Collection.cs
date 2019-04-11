@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework;
 
-namespace VisualNovelEngine.EngineFiles.Collections
+namespace GVNEngine.EngineFiles.Collections
 {
     /// <summary>
     /// Custom Container mimicking the structure needed for Sprite Batch

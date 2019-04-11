@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-namespace VisualNovelEngine.EngineFiles.GameStates
+namespace GVNEngine.EngineFiles.GameStates
 {
     class Splash_Screen : IGame_State_Base
     {

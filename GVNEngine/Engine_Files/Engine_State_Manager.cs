@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VisualNovelEngine.EngineFiles.GameStates;
+using GVNEngine.EngineFiles.GameStates;
 
-namespace VisualNovelEngine.EngineFiles
+namespace GVNEngine.EngineFiles
 {
     public class Engine_State_Manager
     {

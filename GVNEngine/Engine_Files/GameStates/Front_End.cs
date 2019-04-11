@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using VisualNovelEngine.EngineFiles.UI.InGame;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.UI.InGame;
+using GVNEngine.EngineFiles.Collections;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-namespace VisualNovelEngine.EngineFiles.GameStates
+namespace GVNEngine.EngineFiles.GameStates
 {
     class Front_End : IGame_State_Base
     {
