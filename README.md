@@ -1,19 +1,15 @@
-# GVNEngine
-*This project is heavily in development. The state is subject to persistant change*
+# GVNEngine-Prototype
+The GVNEngine is a visual novel engine built using the C# Monogame framework, which wraps the old XNA framework. This repo was used as an early prototyping grounds for developing the engine
 
-The GVNEngine is a Visual Novel Creation Kit using the MonoGame framework. It's primarily intended as deeper exploration into C# and as a personal development tool for projects.
+![ScreenShot](README_Files/GVNEngine_Game_01.png?raw=true "GVNEditor")
 
-## Current Features
-- State System
-  - Splash Screen
-  - Front-End
-  - Dialogue
-- Configurable Engine Properties via XML
-- XML-based Dialogue Files
+## Feature List
+### State Manager
+- Capable of handling switching between various 'States', which represented types of scenes
+- Supported the following states:
+    - Splash Screen
+    - Front-End / Main Menu
+    - Dialogue / Game
 
-## Planned Features
-- GVNEditor
-   - A one-stop-shop for generating content and configuring the operation of the works produced using the GVNEngine
-- Dynamic Content Reading
-   - The ability to read any type of content produced using the GVNEditor (or other sources) and loaded into the GVNEngine
-   
+### Dialogue System
+- Used a pre-defined XML schema written in it's own project. This allowed flexible dialogue authoring for the end-user
