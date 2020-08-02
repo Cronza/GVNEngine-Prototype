@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-namespace VisualNovelEngine.EngineFiles.GameStates
+namespace GVNEngine.EngineFiles.GameStates
 {
     public interface IGame_State_Base
     {

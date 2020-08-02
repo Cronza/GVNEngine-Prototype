@@ -9,8 +9,8 @@
     <ProjectGuid>{753C3907-3345-4477-88D4-F55C97C3ABC7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VisualNovelEngine</RootNamespace>
-    <AssemblyName>VisualNovelEngine</AssemblyName>
+    <RootNamespace>GVNEngine</RootNamespace>
+    <AssemblyName>GVNEngine</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

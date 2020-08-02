@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.Collections;
 
-namespace VisualNovelEngine.EngineFiles.UI.InGame
+namespace GVNEngine.EngineFiles.UI.InGame
 {
     class Dialogue_UI
     {

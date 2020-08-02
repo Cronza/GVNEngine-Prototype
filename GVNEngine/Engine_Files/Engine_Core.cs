@@ -12,10 +12,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Xml;
-using VisualNovelEngine.EngineFiles.Collections;
+using GVNEngine.EngineFiles.Collections;
 
 
-namespace VisualNovelEngine.EngineFiles
+namespace GVNEngine.EngineFiles
 
 {
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
-using VisualNovelEngine.EngineFiles;
+using GVNEngine.EngineFiles;
 
-namespace VisualNovelEngine
+namespace GVNEngine
 {
     /// <summary>
     /// The main class.

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualNovelEngine", "VisualNovelEngine\VisualNovelEngine.csproj", "{753C3907-3345-4477-88D4-F55C97C3ABC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GVNEngine", "GVNEngine\GVNEngine.csproj", "{753C3907-3345-4477-88D4-F55C97C3ABC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GVNXMLData", "GVNXMLData\GVNXMLData.csproj", "{1D4A186F-6E40-44E5-9025-349AAC43B2B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GVNXMLData", "GVNXMLData\GVNXMLData.csproj", "{1D4A186F-6E40-44E5-9025-349AAC43B2B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
